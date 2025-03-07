@@ -1,0 +1,181 @@
+---
+// Filmoteca local
+const localFilms = [
+  {
+    title: "Retablo",
+    director: "Álvaro Delgado Aparicio",
+    year: 2017,
+    image: "https://content.emarket.pe/common/collections/standard/2f/04/2f048d0b-ce45-4a45-af15-40bdbceee930.jpg",
+    origin: "Perú"
+  },
+  {
+    title: "La Teta Asustada",
+    director: "Claudia Llosa",
+    year: 2009,
+    image: "https://i.ytimg.com/vi/RVcyqOCemyI/sddefault.jpg?v=65075879",
+    origin: "Perú"
+  },
+  {
+    title: "Manco Cápac",
+    director: "Henry Vallejo",
+    year: 2020,
+    image: "https://elcomercio.pe/resizer/37PV2jZAgtdMcEQHUrqSpNAIhX8=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/YUEXR7VTWRFZFDL5QRO27YVV5Y.jpeg",
+    origin: "Perú"
+  }
+];
+
+
+// Próximos eventos
+const upcomingEvents = [
+  {
+    date: "15 de Marzo",
+    title: "Proyección: El Cine de los Andes",
+    description: "Una selección de cortometrajes que representan la vida en la sierra peruana.",
+    location: "Auditorio Municipal de Huancayo"
+  },
+  {
+    date: "22 de Marzo",
+    title: "Charla: La Influencia del Cine Andino en Latinoamérica",
+    description: "Con la participación especial de reconocidos directores regionales.",
+    location: "Centro Cultural de Huancayo"
+  }
+];
+---
+
+<section class="py-16 bg-gradient-to-b from-gray-900 to-indigo-950">
+  <div class="container mx-auto px-4">
+    <!-- Header con contexto cultural -->
+    <div class="text-center mb-16">
+      <div class="flex justify-center mb-4">
+        <div class="w-20 h-20 rounded-full bg-amber-300 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+          </svg>
+        </div>
+      </div>
+      <h2 class="text-4xl font-bold text-white mb-4">Únete a Nuestra Comunidad Cinematográfica</h2>
+      <div class="w-24 h-1 bg-amber-300 mx-auto mb-6"></div>
+      <p class="text-gray-300 max-w-2xl mx-auto">El Cine Club Incontrastable de Huancayo te invita a descubrir el mundo a través del séptimo arte, con especial enfoque en el cine peruano y andino. Elige el plan que mejor se adapte a tu pasión por el cine.</p>
+    </div>
+
+    <!-- Próximos eventos - Nuevo componente -->
+    <div class="mb-16 bg-gray-800/50 rounded-2xl p-8 backdrop-blur-sm">
+      <h3 class="text-2xl font-bold text-white text-center mb-6">Próximos Eventos en Huancayo</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {upcomingEvents.map(event => (
+          <div class="bg-gray-800/70 rounded-xl p-6 border border-amber-300/30 hover:border-amber-300 transition-all duration-300">
+            <div class="text-amber-300 font-medium mb-2">{event.date}</div>
+            <h4 class="text-white text-xl font-bold mb-2">{event.title}</h4>
+            <p class="text-gray-300 mb-4">{event.description}</p>
+            <div class="flex items-center text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>{event.location}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-6">
+        <a href="/eventos" class="inline-block bg-amber-300/20 hover:bg-amber-300/30 text-amber-300 px-6 py-2 rounded-lg transition-colors duration-300">
+          Ver Todos los Eventos
+        </a>
+      </div>
+    </div>
+
+    <!-- Filmoteca local - Nuevo componente -->
+    <div class="mb-20">
+      <h3 class="text-2xl font-bold text-white text-center mb-8">Nuestra Filmoteca Peruana</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {localFilms.map(film => (
+          <div class="bg-gray-800/30 rounded-xl overflow-hidden hover:bg-gray-800/50 transition-all duration-300">
+            <img 
+              src={film.image} 
+              alt={film.title} 
+              class="w-full h-40 object-cover object-center"
+            />
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h4 class="text-white font-bold">{film.title}</h4>
+                <span class="text-amber-300 text-sm">{film.year}</span>
+              </div>
+              <p class="text-gray-400 text-sm">{film.director}</p>
+              <div class="mt-3 inline-block px-3 py-1 bg-amber-300/20 text-amber-300 text-xs rounded-full">
+                {film.origin}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/filmoteca" class="inline-block bg-amber-300 hover:bg-amber-400 text-gray-900 px-6 py-3 rounded-lg transition-colors duration-300">
+          Explorar Filmoteca Completa
+        </a>
+      </div>
+    </div>
+    
+    <!-- Sección sobre el impacto cultural - Nuevo componente -->
+    <div class="bg-gradient-to-r from-amber-500/20 to-purple-500/20 rounded-2xl p-8 backdrop-blur-sm mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-4">Impulsando la Cultura Cinematográfica en Huancayo</h3>
+          <p class="text-gray-300 mb-4">El Cine Club Incontrastable nació con la misión de acercar el séptimo arte a todos los huancaínos, creando un espacio para el diálogo, la apreciación y el aprendizaje.</p>
+          <p class="text-gray-300 mb-6">Nos especializamos en la difusión del cine peruano y andino, facilitando el acceso a obras que exploran nuestra identidad cultural, tradiciones y realidades sociales.</p>
+          <div class="flex flex-wrap gap-4">
+            <div class="bg-white/10 rounded-lg p-3 flex items-center">
+              <div class="text-amber-300 font-bold text-2xl mr-2">+50</div>
+              <div class="text-white text-sm">Proyecciones anuales</div>
+            </div>
+            <div class="bg-white/10 rounded-lg p-3 flex items-center">
+              <div class="text-amber-300 font-bold text-2xl mr-2">+200</div>
+              <div class="text-white text-sm">Miembros activos</div>
+            </div>
+            <div class="bg-white/10 rounded-lg p-3 flex items-center">
+              <div class="text-amber-300 font-bold text-2xl mr-2">+15</div>
+              <div class="text-white text-sm">Directores invitados</div>
+            </div>
+          </div>
+        </div>
+        <div class="relative h-64 md:h-full">
+          <div class="absolute inset-0 bg-gradient-to-r from-amber-300/20 to-purple-500/20 rounded-xl"></div>
+          <div class="absolute top-4 left-4 w-40 h-56 bg-gray-800 rounded-lg transform rotate-6 shadow-lg">
+            <img src="https://www.lavanguardia.com/peliculas-series/images/movie/poster/2003/9/w1280/2rMFY3ubIQFqPLVWO9N9Sg6vm48.jpg" alt="Afiche de película peruana" class="w-full h-full object-cover rounded-lg" />
+          </div>
+          <div class="absolute top-8 left-32 w-40 h-56 bg-gray-800 rounded-lg transform -rotate-3 shadow-lg z-10">
+            <img src="https://cdn.www.gob.pe/uploads/document/file/198345/Afiche_de_Wi%C3%B1aypacha_Prensa.jpg" alt="Afiche de película peruana" class="w-full h-full object-cover rounded-lg" />
+          </div>
+          <div class="absolute top-4 left-60 w-40 h-56 bg-gray-800 rounded-lg transform rotate-12 shadow-lg">
+            <img src="https://diariocorreo.pe/resizer/aJm1JYXvXJWPd1eS5uTA8caT1-E=/1200x900/smart/filters:format(jpeg):quality(75)/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/DK36YMOO4NGQ5MMGJ45B2S4B3I.jpg" alt="Afiche de película peruana" class="w-full h-full object-cover rounded-lg" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="text-center mt-16">
+      <h3 class="text-2xl font-bold text-white mb-6">¿Listo para sumergirte en la magia del cine?</h3>
+      <p class="text-gray-300 max-w-xl mx-auto mb-8">Únete a nuestra comunidad y forma parte de un movimiento cultural que está transformando la escena cinematográfica en Huancayo.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/faq" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg transition-colors duration-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Preguntas Frecuentes
+        </a>
+        <a href="/contacto" class="bg-amber-300 hover:bg-amber-400 text-gray-900 px-6 py-3 rounded-lg transition-colors duration-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Contáctanos
+        </a>
+        <a href="/membresia" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg transition-colors duration-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+          Únete Ahora
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
