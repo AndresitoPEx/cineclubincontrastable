@@ -1,0 +1,112 @@
+---
+// Datos de ejemplo para las próximas proyecciones
+// En un proyecto real, estos datos podrían venir de una API o CMS
+const upcomingMovies = [
+  {
+    id: 1,
+    title: "Ciudadano Kane",
+    director: "Orson Welles",
+    year: 1941,
+    date: "15 de Junio, 2024",
+    time: "19:00",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Citizen_Kane_poster%2C_1941_%28Style_B%2C_unrestored%29.jpg/250px-Citizen_Kane_poster%2C_1941_%28Style_B%2C_unrestored%29.jpg",
+    description: "Considerada una de las obras maestras del cine, esta película narra la historia del magnate de la prensa Charles Foster Kane.",
+    tags: ["Clásico", "Drama"]
+  },
+  {
+    id: 2,
+    title: "El Séptimo Sello",
+    director: "Ingmar Bergman",
+    year: 1957,
+    date: "22 de Junio, 2024",
+    time: "18:30",
+    image: "https://es.web.img3.acsta.net/c_310_420/medias/nmedia/18/67/79/06/20093122.jpg",
+    description: "Un caballero regresa de las cruzadas y juega al ajedrez con la Muerte mientras la Peste Negra asola la campiña medieval.",
+    tags: ["Clásico", "Drama", "Filosofía"]
+  },
+  {
+    id: 3,
+    title: "Stalker",
+    director: "Andrei Tarkovsky",
+    year: 1979,
+    date: "29 de Junio, 2024",
+    time: "20:00",
+    image: "https://movingstory-prod.imgix.net/mx/posters/stalker-62751e1e.jpg",
+    description: "Un guía lleva a dos hombres a través de una zona donde las leyes normales de la realidad no se aplican.",
+    tags: ["Ciencia Ficción", "Drama"]
+  },
+  {
+    id: 4,
+    title: "Persona",
+    director: "Ingmar Bergman",
+    year: 1966,
+    date: "6 de Julio, 2024",
+    time: "19:30",
+    image: "https://upload.wikimedia.org/wikipedia/en/0/08/Persona_Poster.jpg",
+    description: "Una enfermera y su paciente, una actriz que ha dejado de hablar, desarrollan una relación compleja que difumina sus identidades.",
+    tags: ["Drama", "Psicológico"]
+  }
+];
+---
+
+<section class="py-16 bg-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-white mb-4">Próximas Proyecciones</h2>
+      <div class="w-24 h-1 bg-amber-300 mx-auto mb-6"></div>
+      <p class="text-gray-300 max-w-2xl mx-auto">Descubre nuestra cuidadosa selección de películas para las próximas semanas. Desde clásicos atemporales hasta joyas del cine independiente.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {upcomingMovies.map(movie => (
+        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2">
+          <div class="relative">
+            <img 
+              src={movie.image || "/placeholder.svg"} 
+              alt={`Poster de ${movie.title}`} 
+              class="w-full h-[400px] object-cover"
+            />
+            <div class="absolute top-0 right-0 bg-amber-300 text-gray-900 px-3 py-1 m-2 rounded-md font-medium">
+              {movie.date}
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-2">{movie.title} ({movie.year})</h3>
+            <p class="text-gray-400 mb-2">Dir. {movie.director}</p>
+            <p class="text-gray-300 mb-4 line-clamp-3">{movie.description}</p>
+            
+            <div class="flex flex-wrap gap-2 mb-4">
+              {movie.tags.map(tag => (
+                <span class="bg-indigo-900/50 text-gray-200 text-xs px-3 py-1 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <div class="flex items-center text-amber-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{movie.time}</span>
+              </div>
+              <button class="bg-indigo-700 hover:bg-indigo-600 text-white px-4 py-2 rounded-md transition-colors duration-300">
+                Reservar
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <a href="/programacion" class="inline-flex items-center bg-amber-300 hover:bg-amber-400 text-gray-900 font-medium px-6 py-3 rounded-md transition-colors duration-300">
+        Ver programación completa
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
